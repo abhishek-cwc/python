@@ -25,3 +25,13 @@ class Customer():
         except Exception as e:
             print("Error fetching data:", e)
             return []
+        
+    def getCustomerByEmail(self, email: str):
+        try:
+            #self.cur.execute("SELECT * FROM Customer WHERE email = %s", (email,))
+            self.cur.execute(f"SELECT * FROM Customer WHERE email = '{email}'")
+            data = self.cur.fetchone()
+            return data
+        except Exception as e:
+            print("Error fetching data:", e)
+            return []    
