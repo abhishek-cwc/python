@@ -1,3 +1,27 @@
+import mysql.connector
+
 class Customer():
+
+    def __init__(self):
+        try:
+            self.con = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="root@123",
+                database="python"
+            )
+            self.cur = self.con.cursor(dictionary=True)
+            print("DB connected!")
+
+        except Exception as e:
+            print("error", e)    
+
+        
     def getAllCustomer(self):
-        return "data"
+        try:
+            self.cur.execute("SELECT * FROM Customer")
+            data = self.cur.fetchall()
+            return data
+        except Exception as e:
+            print("Error fetching data:", e)
+            return []
