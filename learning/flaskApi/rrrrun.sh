@@ -4,9 +4,11 @@ source virtaulenv/bin/activate
 flask run
 
 python3 -m venv virtualenv
+source virtualenv/bin/activate
 pip install flask
+pip install mysql-connector-python
 
-source virtaulenv/bin/activate
+
 PYTHONDONTWRITEBYTECODE=1 flask run
 
 pip install mysql-connector-python
