@@ -34,4 +34,18 @@ class Customer():
             return data
         except Exception as e:
             print("Error fetching data:", e)
-            return []    
+            return []
+
+
+    def createCustomer(self, data):
+        try:
+            sql = "INSERT INTO Customer (name, email, password) VALUES (%s, %s, %s)"
+            result = self.cur.execute(sql, (data['name'], data['email'], data['password']))
+            self.con.commit()
+            last_id = self.cur.lastrowid
+            return last_id
+        except Exception as e:
+            return str(e)
+    
+
+           

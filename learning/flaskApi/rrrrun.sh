@@ -8,8 +8,19 @@ source virtualenv/bin/activate
 pip install flask
 pip install mysql-connector-python
 
-
+source virtualenv/bin/activate
 PYTHONDONTWRITEBYTECODE=1 flask run
+
+API:
+http://localhost:5000/getCustomerByEmail/john.doe@example.com
+http://localhost:5000/getAllCustomer
+http://localhost:5000/createCustomer
+{
+  "name": "Test2",
+  "email": "testsku2@gmail.com",
+  "password": "123456"
+}
+
 
 pip install mysql-connector-python
 
