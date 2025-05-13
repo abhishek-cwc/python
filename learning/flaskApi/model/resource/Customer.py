@@ -1,20 +1,14 @@
 import mysql.connector
+from config.config import DBCONFIG
+from config.Db import Db
 
-class Customer():
+class Customer(Db):
 
     def __init__(self):
-        try:
-            self.con = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                password="root@123",
-                database="python"
-            )
-            self.cur = self.con.cursor(dictionary=True)
-            print("DB connected!")
+        #super().__init__()
+        self.db = Db.get_instance()
+        self.cur = self.db.cur
 
-        except Exception as e:
-            print("error", e)    
 
         
     def getAllCustomer(self):
@@ -47,5 +41,10 @@ class Customer():
         except Exception as e:
             return str(e)
     
+    def isCustomerExist(self, data):
+        print(data['email'])
+        self.cur.execute("select * from Customer where email=%s and password = %s", (data['email'], data['password']))
+        result = self.cur.fetchone()
+        return result
 
            

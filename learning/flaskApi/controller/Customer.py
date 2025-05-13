@@ -17,13 +17,20 @@ def getCustomerByemail(email):
 
 @app.route("/createCustomer", methods=["POST"])
 def createCustomer():
-    print("createcustomer controller")
     data = request.form.to_dict()
     if not data:
         data = request.get_json()
-
     customer = CustomerModel()
     result = customer.createCustomer(data)
+    return sendResponse(result)
+
+@app.route("/login", methods=["POST"])
+def loginCustomer():
+    data = request.form.to_dict()
+    if not data:
+        data = request.get_json()
+    customer = CustomerModel()
+    result = customer.login(data)
     return sendResponse(result)
 
 def sendResponse(result):

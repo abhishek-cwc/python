@@ -21,9 +21,13 @@ http://localhost:5000/createCustomer
   "password": "123456"
 }
 
-
+mysql connector
 pip install mysql-connector-python
+------------
 
+jwt
+pip install pyjwt
+------------------
 
 CREATE TABLE Customer (
     id INT PRIMARY KEY AUTO_INCREMENT,
