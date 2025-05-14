@@ -20,6 +20,7 @@ http://localhost:5000/createCustomer
   "email": "testsku2@gmail.com",
   "password": "123456"
 }
+http://localhost:5000/getThirdParty
 
 mysql connector
 pip install mysql-connector-python
