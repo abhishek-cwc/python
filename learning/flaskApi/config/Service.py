@@ -1,5 +1,5 @@
 #from config.Db import Db
-from config.AbstractDb import AbstractDb
+from config import AbstractDb
 
 class Service:
 
