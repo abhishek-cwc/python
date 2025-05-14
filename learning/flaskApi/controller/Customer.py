@@ -1,7 +1,8 @@
 from app import app
-from flask import request, make_response
+from flask import request, make_response, g
 
 from model.Customer import Customer as CustomerModel
+from model.Auth import Auth
 
 @app.route("/getAllCustomer")
 def getAllCustomer():
@@ -10,7 +11,9 @@ def getAllCustomer():
     return sendResponse(result)
 
 @app.route("/getCustomerByEmail/<email>")
+@Auth.auth()
 def getCustomerByemail(email):
+    print("flask global data: ",g.user)
     customer = CustomerModel()
     result = customer.getCustomerByEmail(email)
     return sendResponse(result)
