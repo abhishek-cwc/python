@@ -38,3 +38,15 @@ CREATE TABLE Customer (
 );
 
 INSERT INTO Customer (name, email, password) VALUES ('John Doe', 'john.doe@example.com', '123456');
+
+=========================
+djangoweb
+python3 -m venv virtualdenv
+source virtualdenv/bin/activate
+pip install django
+
+
+django-admin startproject my_site
+python3 manage.py runserver
+
+python3 manage.py startproject my_app
