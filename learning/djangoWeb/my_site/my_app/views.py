@@ -3,10 +3,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
-
-
 def index(request):
-    return HttpResponse("Welcome home view!")
+    myVar = {
+        "name":"abhi",
+        "lname": "Path",
+    }
+    return render(request, 'my_app/home.html', context=myVar)
 
 def product(request):
     return HttpResponse("Welcome product view!")

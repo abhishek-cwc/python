@@ -47,6 +47,5 @@ pip install django
 
 
 django-admin startproject my_site
+python3 manage.py startapp my_app
 python3 manage.py runserver
-
-python3 manage.py startproject my_app
