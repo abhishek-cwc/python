@@ -1,0 +1,39 @@
+{% extends 'my_app/base.html' %}
+
+{% block content %}
+    <p> <b> Customer List </b> || <a href = "/my_app/customer/create/" > Create </a></p>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="container mt-4">
+
+        <!-- Header Row -->
+        <div class="row fw-bold border-bottom pb-2 mb-3">
+          <div class="col-3">Name</div>
+          <div class="col-3">Email</div>
+          <div class="col-6">Action</div>
+        </div>
+      
+        <!-- Data Rows -->
+        {% for customer in customer_lsit %}
+          <div class="row align-items-center mb-2 border-bottom py-2">
+            <div class="col-3">
+              <a href="/my_app/customer/detail/{{ customer.id }}">{{ customer.fname }}</a>
+            </div>
+            <div class="col-3">{{ customer.email }}</div>
+            <div class="col-6">
+              <a class="btn btn-sm btn-primary me-2" href="/my_app/customer/update/{{ customer.id }}">Update</a>
+              <a class="btn btn-sm btn-danger" href="/my_app/customer/delete/{{ customer.id }}">Delete</a>
+            </div>
+          </div>
+        {% endfor %}
+      
+      </div>
+      
+
+      
+{% endblock %}
+

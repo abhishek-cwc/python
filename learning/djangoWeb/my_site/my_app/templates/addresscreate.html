@@ -1,0 +1,27 @@
+{% extends 'my_app/base.html' %}
+{% block content %}
+    
+
+<form method="post">
+    {%csrf_token%}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">City</label>
+      <input type="city" name="city" class="form-control" id="exampleFormControlInput1" placeholder="City">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">State</label>
+        <input type="text" name="state" class="form-control" id="exampleFormControlInput1" placeholder="State">
+      </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Country</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>India</option>
+        <option>United State</option>
+        <option>United Kingdom</option>
+      </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock %}

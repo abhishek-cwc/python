@@ -1,0 +1,48 @@
+{% extends 'my_app/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  
+  <form class="d-flex" action="" method="GET">
+    <input type="text" name="query" class="form-control me-2" placeholder="Search">
+    <button type="submit" class="btn btn-outline-secondary me-2">Search</button>
+  </form>
+  
+  <a class="btn btn-sm btn-primary" href="/my_app/address/create/">Create</a>
+</div>
+
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="container mt-4">
+
+        <!-- Header Row -->
+        <div class="row fw-bold border-bottom pb-2 mb-3">
+          <div class="col-1">ID</div>
+          <div class="col-3">City</div>
+          <div class="col-3">State</div>
+          <div class="col-5">Action</div>
+        </div>
+      
+        <!-- Data Rows -->
+        {% for address in allAddress %}
+          <div class="row align-items-center mb-2 border-bottom py-2">
+            <div class="col-1">
+              <a href="/my_app/classdetailview/{{ address.id }}">{{ address.id }}</a>
+            </div>
+            <div class="col-3">{{ address.city }}</div>
+            <div class="col-3">{{ address.state }}</div>
+            <div class="col-5">
+              <a class="btn btn-sm btn-primary me-2" href="/my_app/address/update/{{ address.id }}">Update</a>
+              <a class="btn btn-sm btn-danger" href="/my_app/address/delete/{{ address.id }}">Delete</a>
+            </div>
+          </div>
+          {% empty %}
+          <span class="text-center text-danger">No Records Found</span>
+        {% endfor %}
+      
+      </div>
+{% endblock %}

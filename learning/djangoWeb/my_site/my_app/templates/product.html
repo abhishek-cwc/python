@@ -1,0 +1,9 @@
+{% extends 'my_app/base.html' %}
+
+{% block content %}
+    <h1>Product Page</h1>
+    <a href="login">Test</a>
+    {% for customer in allCustomer %}
+        {{ customer.fname }}
+    {% endfor %}
+{% endblock %}
