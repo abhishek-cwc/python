@@ -8,6 +8,12 @@ from .addressForm import addressRegistration
 
 from django.db.models import Q
 
+from django.http import HttpResponse
+
+from django.core.paginator import Paginator, EmptyPage
+
+import csv
+
 def functionCreateView(request):
     if request.method == 'POST' :
         city = request.POST['city']
@@ -35,6 +41,7 @@ def functionUpdateView(request, id):
 
 def functionListView(request):
     allAddress = address.objects.all() 
+    
     if request.method == "GET":
         st = request.GET.get('query')
         if st != None:
@@ -43,11 +50,25 @@ def functionListView(request):
                 Q(city__icontains=st) | Q(state__icontains=st)
             )
 
-    return render(request, 'addresslist.html', {'allAddress' : allAddress})
+    p = Paginator(allAddress, 5)
+    page_number = request.GET.get('page', 1)
+    page = p.page(page_number)
+    return render(request, 'addresslist.html', {'allAddress' : page})
 
 def functionDelete(request,id):
     obj = get_object_or_404(address, pk=id)
     obj.delete()
     messages.success(request, "deleted")
     return redirect("my_app:address/list")
+
+def export(request):
+    allAddress = address.objects.all() 
+    response = HttpResponse(content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename="address.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'CITY', 'STATE'])
+    for data in allAddress:
+        writer.writerow([data.id, data.city, data.state])
+    return response
+
 

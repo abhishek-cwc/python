@@ -1,0 +1,76 @@
+{% extends 'my_app/basel.html' %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row">
+      <!-- Filter Sidebar -->
+      <aside class="col-md-4 col-lg-3 bg-light p-4 rounded shadow-sm">
+        <nav>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <a href= "{% url 'my_app:mcustomer/acount' %}"class="text-decoration-none d-block py-2 px-3 rounded bg-white text-dark fw-semibold">
+                 Account
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href= "{% url 'my_app:mcustomer/order' %}"class="text-decoration-none d-block py-2 px-3 rounded bg-white text-dark fw-semibold">
+                 Order
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+  
+      <!-- Cards Section -->
+      <section class="col-md-8 col-lg-9">
+        <div class="container py-1">
+        
+            
+            <div class="card shadow-sm">
+                <div class="card-body">
+                  <h4 class="card-title mb-3">Account Details</h4>
+          
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <strong>Full Name:</strong>
+                      <p class="mb-0">John Doe</p>
+                    </div>
+                    <div class="col-md-6">
+                      <strong>Email:</strong>
+                      <p class="mb-0">johndoe@example.com</p>
+                    </div>
+                  </div>
+          
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <strong>Phone:</strong>
+                      <p class="mb-0">+1 234 567 8901</p>
+                    </div>
+                    <div class="col-md-6">
+                      <strong>Username:</strong>
+                      <p class="mb-0">johndoe</p>
+                    </div>
+                  </div>
+          
+                  <div class="mb-3">
+                    <strong>Shipping Address:</strong>
+                    <p class="mb-0">
+                      1234 Market Street<br>
+                      San Francisco, CA 94103<br>
+                      United States
+                    </p>
+                  </div>
+          
+                  <div class="text-end">
+                    <a href="#" class="btn btn-outline-primary">Edit Details</a>
+                  </div>
+                </div>     
+
+          </div>
+      </section>
+    </div>
+  </div>
+  
+
+{% endblock %}

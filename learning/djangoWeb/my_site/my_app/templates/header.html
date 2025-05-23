@@ -1,17 +1,11 @@
-
-        
-    <nav class="navbar navbar-expand-lg navbar-light">
-            
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">            
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/my_app">Home</a>
-                </li>
-                <li class="nav-item active">
-                <a class="nav-link" href="/my_app/product">Products</a>
+                <a class="nav-link text-white" href="/my_app/mproducts">Products</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Function Base
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -19,31 +13,31 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Class Base
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href= "{% url 'my_app:customer/list' %}">List</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Admin Dev
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-                </li>
             </ul>
             </div>
 
-            <div class="container-fluid navbar-nav"">
-                <div class="ms-auto">
-                    <a href="" class="nav-link d-inline ">Login</a>
-                    <a href="" class="nav-link d-inline ">Create</a>
-                </div>
+            <div class="container-fluid d-flex justify-content-end align-items-center gap-2 ">
+                
+                    <span class="text-white d-inline">Default welcome msg! </span>
+                  <a href="{% url 'my_app:mcustomer/login' %}" class="nav-link text-white d-inline ">Sign In</a>
+                    <span class="text-white d-inline">Or </span>
+                   <a href="{% url 'my_app:mcustomer/signup' %}" class="nav-link text-white d-inline ">Sign Up</a>
+                    <div class="nav-item d-inline ">
+                        <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Class Base
+                        </a>
+                        <span class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href= "{% url 'my_app:mcustomer/acount' %}">Acount</a>
+                            <a class="dropdown-item" href= "{% url 'my_app:mcustomer/order' %}">Order</a>
+                        </span>
+                    </div>
             </div>
 
         </nav>

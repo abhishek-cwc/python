@@ -7,5 +7,6 @@ urlpatterns = [
     path('create/', address.functionCreateView, name='address/create'),
     path('list/', address.functionListView, name='address/list'),
     path('update/<int:id>', address.functionUpdateView, name='address/update'),
-    path('delete/<int:id>', address.functionDelete, name='function/delete'),
+    path('delete/<int:id>', address.functionDelete, name='address/delete'),
+    path('export/', address.export, name='address/export'),
 ]

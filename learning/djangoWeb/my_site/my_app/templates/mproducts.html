@@ -1,0 +1,58 @@
+{% extends 'my_app/basel.html' %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row">
+      <!-- Filter Sidebar -->
+      <aside class="col-md-4 col-lg-3 bg-light  p-4 rounded">
+        <div class="mb-4">
+          <h5 class="border-bottom pb-2">Sort By</h5>
+          <ul class="list-unstyled">
+            <li>
+              <input type="radio" name="sort" id="lowHigh">
+              <label for="lowHigh">Price: Low to High</label>
+            </li>
+            <li>
+              <input type="radio" name="sort" id="highLow">
+              <label for="highLow">Price: High to Low</label>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="border-bottom pb-2">Category</h5>
+          <ul class="list-unstyled">
+            {% for cat in categorys %}
+            <li>
+              <input type="checkbox" id={{cat.id}}>
+              <label for={{cat.name}}>{{cat.name}}</label>
+            </li>
+            {% endfor %}
+            
+          </ul>
+          <a href="#" class="btn btn-primary btn-sm">Apply</a>
+        </div>
+      </aside>
+  
+      <!-- Cards Section -->
+      <section class="col-md-8 col-lg-9">
+        <div class="d-flex flex-wrap gap-3 justify-content-start">
+
+          {% for product in products %}
+            <div class="card" style="width: 15rem;">
+              <img style="height:8rem;" src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <p class="card-text">$ {{product.price}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+            {% endfor %}
+
+        </div>
+      </section>
+    </div>
+  </div>
+  
+
+{% endblock %}

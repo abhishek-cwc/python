@@ -65,9 +65,6 @@ class ClassDeleteView(DeleteView):
         messages.success(self.request, "Deleted!")
         return response
 
-
-
-
 # Create function base your views here.
 def index(request):
     myVar = {

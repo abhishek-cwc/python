@@ -1,0 +1,69 @@
+{% extends 'my_app/basel.html' %}
+
+{% block content %}
+
+<div class="container my-4">
+    <div class="row">
+      <!-- Filter Sidebar -->
+      <aside class="col-md-4 col-lg-3 bg-light p-4 rounded shadow-sm">
+        <nav>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <a href= "{% url 'my_app:mcustomer/acount' %}" class="text-decoration-none d-block py-2 px-3 rounded bg-white text-dark fw-semibold">
+                 Account
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href= "{% url 'my_app:mcustomer/order' %}" class="text-decoration-none d-block py-2 px-3 rounded bg-white text-dark fw-semibold">
+                 Order
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+  
+      <!-- Cards Section -->
+      <section class="col-md-8 col-lg-9">
+        <div class="container py-1">
+        
+            <div class="row g-4">
+              <!-- Order Card -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title">Order #1001</h5>
+                    <p class="card-text">
+                      <strong>Date:</strong> May 21, 2025<br>
+                      <strong>Status:</strong> <span class="badge bg-success">Delivered</span><br>
+                      <strong>Total:</strong> $149.99
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Copy the above block to add more orders -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title">Order #1002</h5>
+                    <p class="card-text">
+                      <strong>Date:</strong> May 22, 2025<br>
+                      <strong>Status:</strong> <span class="badge bg-warning text-dark">Pending</span><br>
+                      <strong>Total:</strong> $89.00
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Add more order cards here -->
+        
+            </div>
+          </div>
+      </section>
+    </div>
+  </div>
+  
+
+{% endblock %}
