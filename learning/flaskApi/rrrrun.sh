@@ -49,3 +49,11 @@ pip install django
 django-admin startproject my_site
 python3 manage.py startapp my_app
 python3 manage.py runserver
+
+pip install mysqlclient
+
+migrate schema in database :
+python3 manage.py migrate 
+
+python3 manage.py makemigrate 
+python3 manage.py makemigrations
