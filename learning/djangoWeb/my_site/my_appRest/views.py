@@ -2,23 +2,94 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from my_app.models import customer, address
 
+from my_app.models.CustomerToken import CustomerToken
+
 from .api_files.serilizers import CustomerSerializer, AddressSerializer
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework import status
 
 from rest_framework.views import APIView
 
-from rest_framework import mixins, generics
+from rest_framework import mixins, generics, viewsets
+from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
-class GAddressList(generics.ListCreateAPIView):
+from my_app.utils.decorators import functioncustomer_token_required, classcustomer_token_required, funjwt_required
+
+class CustomerJwtLoginView(APIView):
+    def post(self, request):
+        customerEmail = request.data.get('email')
+        password = request.data.get('password')
+        user = customer.objects.get(email=customerEmail)
+        #user = authenticate(request, username=email, password=password)
+        if user is not None:
+            #token, created = Token.objects.get_or_create(user=user)
+            #token, created = CustomerToken.objects.get_or_create(customer=user)
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'token': str(refresh.access_token),
+                'refresh': str(refresh),
+                'customer_id': user.id,
+                'email': user.email
+            })
+        else:
+            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+class CustomerLoginView(APIView):
+    def post(self, request):
+        customerEmail = request.data.get('email')
+        password = request.data.get('password')
+        user = customer.objects.get(email=customerEmail)
+        #user = authenticate(request, username=email, password=password)
+        if user is not None:
+            #token, created = Token.objects.get_or_create(user=user)
+            token, created = CustomerToken.objects.get_or_create(customer=user)
+            return Response({
+                'token': token.key,
+                'customer_id': user.id,
+                'email': user.email
+            })
+        else:
+            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+
+class CustomerLogOutView(APIView):
+    @classcustomer_token_required
+    def post(self, request):
+        token_key = request.token
+        token = CustomerToken.objects.get(key=token_key)
+        # print(token)
+        token.delete()
+        return Response({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)
+        
+        
+
+ ## view Set in place of  GCustomerList and GCustomerDetail
+ #This viewset automatically provides `list` and `retrieve` actions.
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = customer.objects.all()
+    serializer_class = CustomerSerializer
+
+# class GCustomerList(generics.ListCreateAPIView):
+#     queryset = customer.objects.all()
+#     serializer_class = CustomerSerializer
+
+# class GCustomerDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = customer.objects.all()
+#     serializer_class = CustomerSerializer
+
+
+class AddressViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = address.objects.all()
     serializer_class = AddressSerializer
 
-class GCustomerList(generics.ListCreateAPIView):
-    queryset = customer.objects.all()
-    serializer_class = CustomerSerializer
+# class GAddressList(generics.ListCreateAPIView):
+#     queryset = address.objects.all()
+#     serializer_class = AddressSerializer
+
 
 
 
@@ -55,8 +126,14 @@ def customer_list(request):
     return Response(serilizedData.data)
 
 @api_view()
+@authentication_classes([])
+@permission_classes([])
+#@functioncustomer_token_required
+@funjwt_required
 def customer_detail(request, pk):
-    customerData = customer.objects.get(pk=pk)
+    print(request.customer.customer_id)
+    #return Response({'msg': "data"})
+    customerData = customer.objects.get(pk=request.customer.customer_id)
     serilizedData = CustomerSerializer(customerData)
     return Response(serilizedData.data)
 

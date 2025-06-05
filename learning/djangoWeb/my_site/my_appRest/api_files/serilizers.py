@@ -15,8 +15,8 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = customer
-        #fields = '__all__'
-        exclude = ['password']
+        fields = '__all__'
+        #exclude = ['password']
         #fields = ['fname', 'email', 'id']
 
     def get_system_email(self, object):
